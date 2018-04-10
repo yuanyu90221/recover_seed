@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Restore your access key into wallet</title>
+  <script src="./libs/bitcoinjs-lib/bitcoinjs-lib.js"></script>
+  <script src="./libs/bip39/bip39.js"></script>
+  <script src="./js/index.js"></script>
+</head>
+<body>
+  <h1>Seed Restorer</h1>
+  <div class="container">
+    <div class="input" width="100%">
+      <label for="seed">seed</label>
+      <input name="seed" size="100"/>
+    </div>
+    <div class="accountIndex">
+      <label for="accountIndex">account index</label>
+      <input type="number" name="accountIndex" min="0"/>
+    </div>
+    <div class="accountType">
+      <label for="accountType">account type</label>
+      <select name="accountType">
+        <option value="0" selected>external</option>
+        <option value="1">change</option>
+      </select>
+    </div>
+    <div class="addressIndex">
+      <label for="addressIndex">address index</label>
+      <input type="number" name="addressIndex" min="0"/>
+    </div>
+    <div class="button">
+      <button>Recorvery to WIF</button>
+    </div>
+    <div>WIF:</div>
+    <div class="result">
+
+    </div>
+  </div>
+</body>
+</html>

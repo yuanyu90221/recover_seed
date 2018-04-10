@@ -1,0 +1,26 @@
+{
+  "name":"CoolWallet",
+  "version": "1.0",
+  "manifest_version": 2,
+  "author":"dev@coolbitx.com",
+  "description": "Ethereum Browser Extension",
+  "icons": {
+    "16": "images/wallet-icon-16.png",
+    "128": "images/wallet-icon-128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "images/wallet-icon-16.png"
+    },
+    "default_title": "Seed Restorer",
+    "default_popup": "index.html"
+  },
+  "web_accessible_resources": [
+    "libs/bip39/bip39.js",
+    "libs/bitcoinjs-lib/bitcoinjs-lib.js",
+    "js/index.js"
+  ],
+  "permissions": [
+    
+  ] 
+}
