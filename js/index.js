@@ -9,23 +9,41 @@ const bitcoinType = 0;
 function derivedWIF(phrase, accountIndex=0, accountType=0, addressIndex=0) {
   let seedBuffer = bip39.mnemonicToSeed(phrase);
   let masterNode = bitcoin.fromSeedBuffer(seedBuffer);
+  let shiftedAccountIndex = accountIndex - 1;
+  let shiftedAddressIndex = addressIndex - 1;
+  if (shiftedAccountIndex < 0) {
+    throw new Error(`shiftedAccountIndex must large than 0, current shiftedAccountIndex: ${shiftedAccountIndex}`)
+  }
+  if (shiftedAddressIndex < 0) {
+    throw new Error(`shiftedAddressIndex must large than 0, current shiftedAddressIndex: ${shiftedAddressIndex}`)
+  }
   // Derived the first account based on BIP44
   let coinType = bitcoinType;
-  let account0 = masterNode.derivePath(`m/44'/${coinType}'/${accountIndex}'`);
-  let key0 = account0.derivePath(`${accountType}/${addressIndex}`).keyPair;
+  let account = masterNode.derivePath(`m/44'/${coinType}'/${shiftedAccountIndex}'`);
+  let key = account.derivePath(`${accountType}/${shiftedAddressIndex}`).keyPair;
 
-  let address0 = key0.getAddress();
-  return key0.toWIF();
+  let address = key.getAddress();
+  
+  return {wif:key.toWIF(), address:address};
 }
 document.addEventListener('DOMContentLoaded',function(){
-  document.querySelector('[name=accountIndex]').value = 0;
-  document.querySelector('[name=addressIndex]').value = 0;
+  document.querySelector('[name=accountIndex]').value = 1;
+  document.querySelector('[name=addressIndex]').value = 1;
+  
   document.querySelector('.button').addEventListener('click', function(){
     let currentSeed = document.querySelector('[name=seed]').value;
     let currentAccountIndex = document.querySelector('[name=accountIndex]').value;
     let currentAddressIndex = document.querySelector('[name=addressIndex]').value;
     let currentAccountType = document.querySelector('[name=accountType]').value;
-    let result = document.querySelector('.result');
-    result.textContent= derivedWIF(currentSeed, currentAccountIndex, currentAccountType, currentAddressIndex);
+    let wifDOM = document.querySelector('.wif');
+    let addressDOM = document.querySelector('.address');
+    try {
+      let {wif,address} = derivedWIF(currentSeed, currentAccountIndex, currentAccountType, currentAddressIndex);
+      wifDOM.textContent = wif;
+      addressDOM.textContent = address;
+    } 
+    catch(err) {
+      alert(err.message);
+    } 
   });
 });
