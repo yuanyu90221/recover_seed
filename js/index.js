@@ -1,14 +1,11 @@
 const bitcoinType = 0;
 function changeNumberCodeMnemonic(phrase) {
   let phraseToken = phrase.split(' ');
-  // console.log(phraseToken);
   if( phraseToken[0].length != 6) {// check if number length is 5
-    console.log(`${phraseToken[0]} length less than 6`);
     try {
       let nonZeroSeed = phraseToken.filter((phraseContent)=>{
         return phraseContent!=="";
       }).map((phraseContent)=>{
-        console.log(phraseContent);
         return search(phraseContent);
       }).join(' ');
       return nonZeroSeed;
