@@ -1,4 +1,26 @@
 const bitcoinType = 0;
+function changeNumberCodeMnemonic(phrase) {
+  let phraseToken = phrase.split(' ');
+  // console.log(phraseToken);
+  if( phraseToken[0].length != 6) {// check if number length is 5
+    console.log(`${phraseToken[0]} length less than 6`);
+    try {
+      let nonZeroSeed = phraseToken.filter((phraseContent)=>{
+        return phraseContent!=="";
+      }).map((phraseContent)=>{
+        console.log(phraseContent);
+        return search(phraseContent);
+      }).join(' ');
+      return nonZeroSeed;
+    }
+    catch(e){
+      throw e;
+    }
+  }
+  else {
+    return phrase;
+  }
+}
 /**
  * derived WIF from digit phrase
  * @param {*} phrase 
@@ -7,10 +29,23 @@ const bitcoinType = 0;
  * @param {*} addressIndex 
  */
 function derivedWIF(phrase, accountIndex=0, accountType=0, addressIndex=0) {
-  let seedBuffer = bip39.mnemonicToSeed(phrase);
-  let masterNode = bitcoin.fromSeedBuffer(seedBuffer);
-  let shiftedAccountIndex = accountIndex - 1;
-  let shiftedAddressIndex = addressIndex - 1;
+
+    let phraseParse = "";
+    try {
+      phraseParse =  changeNumberCodeMnemonic(phrase);
+    }
+    catch(e) {
+     throw e;
+    }
+    console.log(phraseParse);
+    let seedBuffer = bip39.mnemonicToSeed(phraseParse);
+    let masterNode = bitcoin.fromSeedBuffer(seedBuffer);
+    let shiftedAccountIndex = accountIndex - 1;
+    let shiftedAddressIndex = addressIndex - 1;
+  
+  // catch(e) {
+  //   throw e;
+  // }
   if (shiftedAccountIndex < 0) {
     throw new Error(`shiftedAccountIndex must large than 0, current shiftedAccountIndex: ${shiftedAccountIndex}`)
   }

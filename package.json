@@ -12,6 +12,8 @@
   "dependencies": {
     "bip39": "^2.5.0",
     "bitcoinjs-lib": "^3.3.2",
-    "browserify": "^16.1.1"
+    "browserify": "^16.1.1",
+    "fs": "0.0.1-security",
+    "jsonfile": "^4.0.0"
   }
 }
