@@ -1,7 +1,7 @@
 const mnemonicMap = JSON.parse(data);
 /**
  * search
- * @param {*} keyword 
+ * @param {string} keyword 
  */
 const search = (keyword) => {
   let result = mnemonicMap.find((element)=>{
