@@ -10,17 +10,21 @@
   <script src="./libs/bitcoinjs-lib/bitcoinjs-lib.js"></script>
   <script src="./libs/bip39/bip39.js"></script>
   <script src="./js/index.js"></script>
+  <style>
+    * {
+      font-family:'Kienvit-Medium'
+    }
+  </style>
 </head>
 <body>
-  <h1>Seed Restorer</h1>
+  <h2>Seed Restorer</h2>
   <div class="container">
     <div class="input" width="100%">
       <label for="seed">seed</label>
       <input name="seed" size="100"/>
     </div>
     <div class="accountIndex">
-      <label for="accountIndex">account #number (1-5)</label>
-      
+      <label for="accountIndex">account #number (1-5)</label> 
       <select name="accountIndex">
         <option value="1">1</option>
         <option value="2">2</option>
