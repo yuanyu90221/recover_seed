@@ -6,7 +6,7 @@ const bitcoinType = 0;
  */
 function changeNumberCodeMnemonic(phrase) {
   let phraseToken = phrase.split(' ');
-  if( phraseToken[0].length != 6) {// check if number length is 5
+  if( phraseToken[0].length == 5) {// check if number length is 5
     try {
       let nonZeroSeed = phraseToken.filter((phraseContent)=>{
         return phraseContent!=="";
@@ -22,6 +22,24 @@ function changeNumberCodeMnemonic(phrase) {
   else {
     return phrase;
   }
+}
+/**
+ * @description derived rootkey from seed
+ * @param {string} phrase 
+ */
+function derived2NHDWif(phrase) {
+  let phraseParse = "";
+  try {
+    phraseParse =  changeNumberCodeMnemonic(phrase);
+  }
+  catch(e) {
+    throw e;
+  }
+  let seedBuffer = bip39.mnemonicToSeed(phraseParse);
+  let masterNode = bitcoin.fromSeedBuffer(seedBuffer);
+  let wif = masterNode.keyPair.toWIF();
+  let bip32_ext_address = masterNode.toBase58();
+  return {wif:wif,bip32_ext_address:bip32_ext_address};
 }
 /**
  * derived WIF from digit phrase
@@ -59,6 +77,7 @@ function derivedWIF(phrase, accountIndex=0, accountType=0, addressIndex=0) {
   
   return {wif:key.toWIF(), address:address};
 }
+
 document.addEventListener('DOMContentLoaded',function(){
   document.querySelector('[name=accountIndex]').value = 1;
   document.querySelector('[name=addressIndex]').value = 1;
@@ -78,5 +97,18 @@ document.addEventListener('DOMContentLoaded',function(){
     catch(err) {
       alert(err.message);
     } 
+  });
+  document.querySelector('.nonHd-button').addEventListener('click', function(){
+    let currentSeed = document.querySelector('[name=seed]').value;
+    let bip32ExtDOM = document.querySelector('.bip32-ext');
+    let nonWifDOM = document.querySelector('.noHD-wif');
+    try {
+      let {wif,bip32_ext_address} = derived2NHDWif(currentSeed);
+      nonWifDOM.value = wif;
+      bip32ExtDOM.value = bip32_ext_address;
+    }
+    catch(err) {
+      alter(err.message);
+    }
   });
 });
