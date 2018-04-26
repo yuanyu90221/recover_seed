@@ -98,17 +98,4 @@ document.addEventListener('DOMContentLoaded',function(){
       alert(err.message);
     } 
   });
-  document.querySelector('.nonHd-button').addEventListener('click', function(){
-    let currentSeed = document.querySelector('[name=seed]').value;
-    let bip32ExtDOM = document.querySelector('.bip32-ext');
-    let nonWifDOM = document.querySelector('.noHD-wif');
-    try {
-      let {wif,bip32_ext_address} = derived2NHDWif(currentSeed);
-      nonWifDOM.value = wif;
-      bip32ExtDOM.value = bip32_ext_address;
-    }
-    catch(err) {
-      alter(err.message);
-    }
-  });
 });
