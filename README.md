@@ -19,7 +19,7 @@ function derivedWIF(phrase, accountIndex=0, accountType=0, addressIndex=0) {
 ```
 # 參考
 
-bip44 HD錢包架構格式 <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
+bip44 HD錢包架構格式 <https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki>
 
 bip39 mnemonic encode
 <https://github.com/bitcoin/bips/blob/master/bip-0039/bip-0039-wordlists.md>
