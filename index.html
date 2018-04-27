@@ -28,11 +28,11 @@
   <div class="container">
     <div class="input" width="100%">
       <label for="seed">seed</label>
-      <input name="seed" size="100"/>
+      <input id="seed" name="seed" size="100"/>
     </div>
     <div class="accountIndex">
       <label for="accountIndex">account #number (1-5)</label> 
-      <select name="accountIndex">
+      <select name="accountIndex" id="accountIndex">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -42,23 +42,23 @@
     </div>
     <div class="accountType">
       <label for="accountType">chain type</label>
-      <select name="accountType">
+      <select name="accountType" id="accountType">
         <option value="0" selected>external</option>
         <option value="1">change</option>
       </select>
     </div>
     <div class="addressIndex">
       <label for="addressIndex">address #number# (chose which address you wish to restore)</label>
-      <input type="number" name="addressIndex" min="1"/>
+      <input type="number" name="addressIndex" id="addressIndex" min="1"/>
     </div>
     <div class="button">
-      <button>Recover to WIF</button>
+      <button id="button">Recover to WIF</button>
     </div>
     <div>WIF:</div>
-    <div class="wif">
+    <div class="wif" id="wif">
     </div>
     <div>Address:</div>
-    <div class="address">
+    <div class="address" id="address">
     </div>
   </div>
 </body>

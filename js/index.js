@@ -79,16 +79,16 @@ function derivedWIF(phrase, accountIndex=0, accountType=0, addressIndex=0) {
 }
 
 document.addEventListener('DOMContentLoaded',function(){
-  document.querySelector('[name=accountIndex]').value = 1;
-  document.querySelector('[name=addressIndex]').value = 1;
+  document.querySelector('#accountIndex').value = 1;
+  document.querySelector('#addressIndex').value = 1;
   
-  document.querySelector('.button').addEventListener('click', function(){
-    let currentSeed = document.querySelector('[name=seed]').value;
-    let currentAccountIndex = document.querySelector('[name=accountIndex]').value;
-    let currentAddressIndex = document.querySelector('[name=addressIndex]').value;
-    let currentAccountType = document.querySelector('[name=accountType]').value;
-    let wifDOM = document.querySelector('.wif');
-    let addressDOM = document.querySelector('.address');
+  document.querySelector('#button').addEventListener('click', function(){
+    let currentSeed = document.querySelector('#seed').value;
+    let currentAccountIndex = document.querySelector('#accountIndex').value;
+    let currentAddressIndex = document.querySelector('#addressIndex').value;
+    let currentAccountType = document.querySelector('#accountType').value;
+    let wifDOM = document.querySelector('#wif');
+    let addressDOM = document.querySelector('#address');
     try {
       let {wif,address} = derivedWIF(currentSeed, currentAccountIndex, currentAccountType, currentAddressIndex);
       wifDOM.textContent = wif;
