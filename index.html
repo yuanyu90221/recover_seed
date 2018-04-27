@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Restore your access key into wallet</title>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">  
+<script type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js?ver=180120181119'></script>
   <script type="text/javascript" src="./mnemonic/mnemonic.json"></script>
   <script src="./js/type-search.js"></script>
   <script src="./libs/bitcoinjs-lib/bitcoinjs-lib.js"></script>
@@ -25,14 +35,14 @@
 </head>
 <body>
   <h2>Seed Restorer</h2>
-  <div class="container">
-    <div class="input" width="100%">
+  <form>
+    <div class="form-group">
       <label for="seed">seed</label>
-      <input id="seed" name="seed" size="100"/>
+      <input id="seed" name="seed" class="form-control"/>
     </div>
-    <div class="accountIndex">
+    <div class="form-group">
       <label for="accountIndex">account #number (1-5)</label> 
-      <select name="accountIndex" id="accountIndex">
+      <select name="accountIndex" id="accountIndex" class="form-control">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -40,26 +50,28 @@
         <option value="5">5</option>
       </select>
     </div>
-    <div class="accountType">
+    <div class="form-group">
       <label for="accountType">chain type</label>
-      <select name="accountType" id="accountType">
+      <select name="accountType" id="accountType" class="form-control">
         <option value="0" selected>external</option>
         <option value="1">change</option>
       </select>
     </div>
-    <div class="addressIndex">
+    <div class="form-group">
       <label for="addressIndex">address #number# (chose which address you wish to restore)</label>
-      <input type="number" name="addressIndex" id="addressIndex" min="1"/>
+      <input type="number" name="addressIndex" id="addressIndex" class="form-control" min="1"/>
     </div>
-    <div class="button">
-      <div id="button">Recover to WIF</div>
+    <div class="form-group">
+      <div id="button" class="btn btn-primary">Recover to WIF</div>
     </div>
-    <div>WIF:</div>
-    <div class="wif" id="wif">
+    <div class="form-group">
+      <div>WIF:</div>
+      <div class="wif" id="wif">
+      </div>
     </div>
     <div>Address:</div>
     <div class="address" id="address">
     </div>
-  </div>
+  </form>
 </body>
 </html>
